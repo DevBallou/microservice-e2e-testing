@@ -48,7 +48,7 @@ class CustomerRepositoryTest {
 
     @Test
     public void shouldFindCustomersByFirstName() {
-        String keyword = "u";
+        String keyword = "m";
         List<Customer> expected = List.of(
                 Customer.builder().firstName("Hicham")
                         .lastName("Baallou").email("hicham@gmail.com").build(),
@@ -59,7 +59,7 @@ class CustomerRepositoryTest {
 
         assertThat(result).isNotNull();
         assertThat(result.size()).isEqualTo(expected.size());
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).usingRecursiveComparison().ignoringFields("id").isEqualTo(expected);
 
     }
 }
